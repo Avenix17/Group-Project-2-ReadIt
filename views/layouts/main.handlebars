@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReadIt</title>
+  <link rel="stylesheet" href="/public/style.css">
+</head>
+
+<body>
+    <div>
+        <header>
+    
+          <nav>
+        <!-- Conditionally render login or logout links -->
+        {{#if logged_in}} |
+        <button id="logout">logout</button>
+        {{else}}
+        <button id="login">login</button>
+        {{/if}}
+      </nav>
+
+      </header>
+      <main>
+        {{{body}}}
+      </main>
+
+      <footer>
+        <!-- not sure if adding footer -->
+      </footer>
+    </div>
+</body>
+</html>
