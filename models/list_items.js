@@ -16,8 +16,8 @@ ListItems.init(
         allowNull: false,
 
       },
-      bookinfo: {
-        type: DataTypes.JSON, //summary, reviews, etc?
+      bookdescription: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
       author: {
@@ -28,7 +28,21 @@ ListItems.init(
         type: DataTypes.STRING,
         allowNull: false,
       },
-      //List id
+      //List name
+      listname: {
+        type: DataTypes.STRING,
+        references: {
+          model: 'book_lists',
+          key: 'listname',
+        },
+      }
+    },
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'list_items',
     }
 );
 

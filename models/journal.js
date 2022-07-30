@@ -16,12 +16,25 @@ Journal.init(
             allowNull: false,
         },
         entry: {
-            type: DataTypes.STRING,
-            //^^
+            type: DataTypes.STRING(500),
             allowNull: false,
         },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'user',
+              key: 'id',
+            },
+        }
         //user id
         //timestamp
+    },
+    {
+        sequelize,
+        timestamps: true,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'journal',
     }
 );
 
