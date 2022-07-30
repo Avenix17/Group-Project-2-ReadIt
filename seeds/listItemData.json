@@ -3,21 +3,18 @@
         "booktitle": "The Bridge to Teribithia",
         "bookdescription": "Teribithia is a very strange word and I do not know how to spell it",
         "author": "Strange person",
-        "genre": "Who knows?",
-        "listname": "Spooky"
+        "genre": "Who knows?"
     },
     {
         "booktitle": "Green Eggs and Ham",
         "bookdescription": "No, I would not like green eggs and ham!",
         "author": "Suuuueeessss",
-        "genre": "Spoopy",
-        "listname": "Skeletons"
+        "genre": "Spoopy"
     },
     {
         "booktitle": "Physics for dummies",
         "bookdescription": "You be stupid if you don't know the physics of life",
         "author": "Individual with no life",
-        "genre": "Who knows?",
-        "listname": "Scary"
+        "genre": "Who knows?"
     }
 ]
