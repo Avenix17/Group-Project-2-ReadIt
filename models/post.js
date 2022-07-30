@@ -19,9 +19,23 @@ Post.init(
             type: DataTypes.STRING(500),
             allowNull: false,
         },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'user',
+              key: 'id',
+            },
+        }
         //user id
         //timestamp
         //reply id (points at post id)
+    },
+    {
+        sequelize,
+        timestamps: true,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'post',
     }
 );
 

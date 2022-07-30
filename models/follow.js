@@ -5,8 +5,29 @@ class Follow extends Model {}
 
 Follow.init(
     {
-        //following
-        //followed
+        //Current User
+        username: {
+            type: DataTypes.STRING,
+            references: {
+              model: 'user',
+              key: 'username',
+            },
+        },
+        //Who the current user is following
+        followed_username: {
+            type: DataTypes.STRING,
+            references: {
+              model: 'user',
+              key: 'username',
+            },
+        }
+    },
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'follow',
     }
 );
 
