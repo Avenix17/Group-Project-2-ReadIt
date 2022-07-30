@@ -29,11 +29,12 @@ ListItems.init(
         allowNull: false,
       },
       //List name
-      listname: {
-        type: DataTypes.STRING,
+      list_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
           model: 'book_lists',
-          key: 'listname',
+          key: 'id',
         },
       }
     },

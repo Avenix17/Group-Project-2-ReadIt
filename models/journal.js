@@ -19,15 +19,14 @@ Journal.init(
             type: DataTypes.STRING(500),
             allowNull: false,
         },
-        user_id: {
-            type: DataTypes.INTEGER,
+        //user id
+        username: {
+            type: DataTypes.STRING,
             references: {
               model: 'user',
-              key: 'id',
+              key: 'username',
             },
         }
-        //user id
-        //timestamp
     },
     {
         sequelize,

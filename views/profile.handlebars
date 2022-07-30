@@ -1,0 +1,26 @@
+<div class="row">
+<!-- top of profile page -->
+    <div class="topnav">
+        <h1>{{User Name}}</h1>
+        <input type="text" placeholder="Search..">
+    </div>
+
+<!--left side nav bar that is on each page -->
+    <div class="left-sidebar">
+        <a class="active" href="#home">Home</a>
+        <a href="#profile">Profile</a>
+        <a href="#library">Library</a>
+        <a href="#settings">Settings</a>
+    </div>
+<!-- page content-->
+    <div class="profile-content">
+        {{users personal posts}}
+    </div>
+<!-- right side bar boxes -->
+<div class="right-sidebar">
+    <div class="book-list">
+        {{books added to list to read}}
+    </div>
+</div>
+
+</div>
