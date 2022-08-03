@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const { User, Follow, Post } = require("../models");
-// const withAuth = require("../utils/authentication");
+const withAuth = require("../utils/authentication");
 
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async  (req, res) => {
   try {
     // Get all projects and JOIN with user data
     const userData = await User.findAll({
@@ -163,14 +163,14 @@ router.get("/follow/:followed_username", async (req, res) => {
 //   }
 // });
 
-// router.get("/login", (req, res) => {
-//   // If the user is already logged in, redirect the request to another route
-//   if (req.session.logged_in) {
-//     res.redirect("/profile");
-//     return;
-//   }
+ router.get("/login", (req, res) => {
+    //If the user is already logged in, redirect the request to another route
+   if (req.session.logged_in) {
+   res.redirect("/profile");
+     return;
+   }
 
-//   res.render("login");
-// });
+   res.render("login");
+ });
 
 module.exports = router;
