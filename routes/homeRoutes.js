@@ -34,7 +34,12 @@ router.get('/', withAuth, async (req, res) => {
     const children = await p.getPosts();
     return {
       ...p.dataValues,
-      children: children.map(c => c.dataValues),
+      // Makes createdAt a more reasonable format
+      createdAt: (p.createdAt + '').substring(0, 24),
+      children: children.map(c => ({
+        ...c.dataValues,
+        createdAt: (c.createdAt + '').substring(0, 24),
+      })),
     };
   }));
 

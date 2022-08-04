@@ -16,6 +16,7 @@ router.post("/", async (req, res) => {
       title: req.body.title,
       entry: req.body.entry,
       username: req.session.username,
+      reply_to: req.body.reply_to ? req.body.reply_to : null,
     });
     res.status(200).json(newPostData);
   } catch (err) {
