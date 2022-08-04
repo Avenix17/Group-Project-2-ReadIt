@@ -6,5 +6,9 @@
     {
         "username": "Sal",
         "followed_username": "Amiko"
+    },
+    {
+        "username": "Amiko",
+        "followed_username": "Sal"
     }
 ]

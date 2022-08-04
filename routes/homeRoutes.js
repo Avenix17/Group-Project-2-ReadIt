@@ -2,146 +2,206 @@ const router = require("express").Router();
 const { User, Follow, Post } = require("../models");
 const withAuth = require("../utils/authentication");
 
-router.get("/", withAuth, async  (req, res) => {
-  try {
-    // Get all projects and JOIN with user data
-    const userData = await User.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ["username"],
-        },
-      ],
-    });
 
-    // Serialize data so the template can read it
-    const users = userData.map((users) => users.get({ plain: true }));
+// rendering all posts to homepage
+router.get('/', withAuth, async (req, res) => {
+  console.log(req.session);
 
-    // Pass serialized data and session flag into template
-    res.render("homepage", {
-      users,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  const posts = await Post.findAll({
+    // where: {
+    //   username: req.session.currentUser,
+    // },
+    // attributes: [
+    //   'id',
+    //   'entry',
+    //   'title',
+    //   'reply_to'
+    // ],
+    // include: [
+    //   {
+    //     model: User,
+    //     attributes: ['username']
+    //   }
+    // ]
+  });
+
+
+  const following = await Follow.findAll({
+    // where: {
+    //   username: req.session.currentUser,
+    // },
+    // attributes: [
+    //   'follow_username',
+    // ],
+    // include: [
+    //   {
+    //     model: User,
+    //     attributes: ['username']
+    //   }
+    // ]
+  });
+
+  // console.log("posts", posts);
+  // console.log("following", following);
+
+  res.render('homepage', { posts, following, logged_in: req.session.logged_in });
+
 });
 
-router.get("/user/:username", async (req, res) => {
-  try {
-    const userData = await User.findByPk(req.params.username, {
-      include: [
-        {
-          model: User,
-          attributes: ["username"],
-        },
-      ],
-    });
-
-    const user = userData.get({ plain: true });
-
-    res.render("user", {
-      ...user,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
+// redirecting users to homepage once they log in
+router.get('/login', (req, res) => {
+  console.log(req.session);
+  if (req.session.logged_in) {
+    console.log("Logged in, redirecting to /");
+    res.redirect('/');
+    return;
   }
+  console.log("Not logged in, rendering login");
+  res.render('login');
 });
 
-router.get("/", async (req, res) => {
-  try {
-    // Get all projects and JOIN with user data
-    const postData = await Post.findAll({
-      include: [
-        {
-          model: Post,
-          attributes: ["entry"],
-        },
-      ],
-    });
 
-    // Serialize data so the template can read it
-    const post = postData.map((post) => post.get({ plain: true }));
 
-    // Pass serialized data and session flag into template
-    res.render("homepage", {
-      post,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// router.get("/", withAuth, async  (req, res) => {
+//   try {
+//     // Get all projects and JOIN with user data
+//     // const userData = await User.findAll({
+//     //   include: [
+//     //     {
+//     //       model: User,
+//     //       attributes: ["username"],
+//     //     },
+//     //   ],
+//     // });
 
-router.get("/post/:entry", async (req, res) => {
-  try {
-    const postData = await Post.findByPk(req.params.id, {
-      include: [
-        {
-          model: Post,
-          attributes: ["entry"],
-        },
-      ],
-    });
+//     // Serialize data so the template can read it
+//     // const users = userData.map((users) => users.get({ plain: true }));
 
-    const post = postData.get({ plain: true });
+//     // Pass serialized data and session flag into template
+//     res.render("homepage", {
+//       // users,
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
-    res.render("post", {
-      ...post,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// router.get("/user/:username", async (req, res) => {
+//   try {
+//     const userData = await User.findByPk(req.params.username, {
+//       include: [
+//         {
+//           model: User,
+//           attributes: ["username"],
+//         },
+//       ],
+//     });
 
-router.get("/", async (req, res) => {
-  try {
-    // Get all projects and JOIN with user data
-    const followData = await Follow.findAll({
-      include: [
-        {
-          model: Follow,
-          attributes: ["followed_username"],
-        },
-      ],
-    });
+//     const user = userData.get({ plain: true });
 
-    // Serialize data so the template can read it
-    const follow = followData.map((follow) => follow.get({ plain: true }));
+//     res.render("user", {
+//       ...user,
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
-    // Pass serialized data and session flag into template
-    res.render("homepage", {
-      follow,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// router.get("/", async (req, res) => {
+//   try {
+//     // Get all projects and JOIN with user data
+//     const postData = await Post.findAll({
+//       include: [
+//         {
+//           model: Post,
+//           attributes: ["entry"],
+//         },
+//       ],
+//     });
 
-router.get("/follow/:followed_username", async (req, res) => {
-  try {
-    const followData = await Follow.findByPk(req.params.id, {
-      include: [
-        {
-          model: Follow,
-          attributes: ["followed_username"],
-        },
-      ],
-    });
+//     // Serialize data so the template can read it
+//     const post = postData.map((post) => post.get({ plain: true }));
 
-    const follow = followData.get({ plain: true });
+//     // Pass serialized data and session flag into template
+//     res.render("homepage", {
+//       post,
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
-    res.render("follow", {
-      ...follow,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// router.get("/post/:entry", async (req, res) => {
+//   try {
+//     const postData = await Post.findByPk(req.params.id, {
+//       include: [
+//         {
+//           model: Post,
+//           attributes: ["entry"],
+//         },
+//       ],
+//     });
+
+//     const post = postData.get({ plain: true });
+
+//     res.render("post", {
+//       ...post,
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+// router.get("/", async (req, res) => {
+//   try {
+//     // Get all projects and JOIN with user data
+//     const followData = await Follow.findAll({
+//       include: [
+//         {
+//           model: Follow,
+//           attributes: ["followed_username"],
+//         },
+//       ],
+//     });
+
+//     // Serialize data so the template can read it
+//     const follow = followData.map((follow) => follow.get({ plain: true }));
+
+//     // Pass serialized data and session flag into template
+//     res.render("homepage", {
+//       follow,
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+// router.get("/follow/:followed_username", async (req, res) => {
+//   try {
+//     const followData = await Follow.findByPk(req.params.id, {
+//       include: [
+//         {
+//           model: Follow,
+//           attributes: ["followed_username"],
+//         },
+//       ],
+//     });
+
+//     const follow = followData.get({ plain: true });
+
+//     res.render("follow", {
+//       ...follow,
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 // // Use withAuth middleware to prevent access to route
 // router.get("/profile", withAuth, async (req, res) => {
@@ -163,14 +223,14 @@ router.get("/follow/:followed_username", async (req, res) => {
 //   }
 // });
 
- router.get("/login", (req, res) => {
-    //If the user is already logged in, redirect the request to another route
-   if (req.session.logged_in) {
-   res.redirect("/profile");
-     return;
-   }
-
-   res.render("login");
- });
+//  router.get("/login", (req, res) => {
+//     //If the user is already logged in, redirect the request to another route
+//    if (req.session.logged_in) {
+//    res.redirect("/profile");
+//      return;
+//    }
+//    res.render("login");
+//   //  res.render("login", {layout : 'main'});
+//  });
 
 module.exports = router;

@@ -13,10 +13,11 @@
     
           <nav>
         <!-- Conditionally render login or logout links -->
-        {{#if logged_in}} |
-        <button id="logout">logout</button>
+        {{#if logged_in}}
+        <a href="/profile">profile</a> |
+        <button class="no-button" id="logout">logout</button>
         {{else}}
-        <button id="login">login</button>
+        <a href="/login">login</a>
         {{/if}}
       </nav>
 
@@ -29,5 +30,9 @@
         <!-- not sure if adding footer -->
       </footer>
     </div>
+
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
 </body>
 </html>
