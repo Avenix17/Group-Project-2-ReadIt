@@ -8,9 +8,9 @@ router.get('/', withAuth, async (req, res) => {
   console.log(req.session);
 
   const posts = await Post.findAll({
-    // where: {
-    //   username: req.session.currentUser,
-    // },
+    where: {
+      username: req.session.username,
+    },
     // attributes: [
     //   'id',
     //   'entry',
@@ -27,9 +27,9 @@ router.get('/', withAuth, async (req, res) => {
 
 
   const following = await Follow.findAll({
-    // where: {
-    //   username: req.session.currentUser,
-    // },
+    where: {
+      username: req.session.username,
+    },
     // attributes: [
     //   'follow_username',
     // ],
