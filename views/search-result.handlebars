@@ -1,26 +1,35 @@
 <div class="row">
-<!-- top search bar -->
-<div class="topnav">
-  <form class="search-bar">
-    <input type="text" placeholder="Search.."/>
-    <button class="button is-primary" type="submit">Search</button>
-  </form>
-  <button id="search-users">Other Users</button>
+  <!-- top search bar -->
+  <div class="topnav">
+    <input type="text" id="search-bar" placeholder="Search.."/>
+    <button onclick="searchBook()">Search</button>
+    <button id="search-users">Show all Users</button>
+    <button id="hide-users">Hide all Users</button>
 
-</div>
+  </div>
 
-<!-- side nav bar -->
-<div class="left-sidebar">
-  <a class="active" href="/">Home</a>
-  <a href="#profile">Profile</a>
-  <a href="#settings">Settings</a>
-</div>
+  <!-- side nav bar -->
+  <div class="left-sidebar">
+    <a class="active" href="/">Home</a>
+    <a href="#profile">Profile</a>
+    <a href="#settings">Settings</a>
+  </div>
 
-<!-- page content -->
-<div id="search-output">
+  <!-- page content -->
+  <div class="page-content">
+    <div id="search-output"></div>
 
-</div>
-<button onclick="addToList()">Add To List</button>
+    <div class="hidden" id="user-output">
+      {{#each users as |user|}}
+      <li>
+        {{dataValues.username}}
+        <button class="follow-btn" _username="{{dataValues.username}}">Follow</button>
+      </li>
+      {{/each}}
+    </div>
+  </div>
+
+  <button onclick="addToList()">Add To List</button>
 </div>
 
 <script src="./js/search.js"></script>

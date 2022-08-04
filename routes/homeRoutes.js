@@ -53,9 +53,11 @@ router.get('/', withAuth, async (req, res) => {
 
 
 router.get('/search', withAuth, async (req, res) => {
-  const users = User.findAll({
+  const users = await User.findAll({
+    attributes: ['username']
+  });
+  console.log(users);
 
-  })
   res.render('search-result', {users, logged_in: req.session.logged_in});
 });
 
