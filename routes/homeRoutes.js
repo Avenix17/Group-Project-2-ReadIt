@@ -5,7 +5,6 @@ const withAuth = require("../utils/authentication");
 
 
 router.get('/', withAuth, async (req, res) => {
-  console.log(req.session);
   const following = await Follow.findAll({
     where: {
       username: req.session.username,
@@ -51,6 +50,15 @@ router.get('/', withAuth, async (req, res) => {
   });
 
 });
+
+
+router.get('/search', withAuth, async (req, res) => {
+  const users = User.findAll({
+
+  })
+  res.render('search-result', {users, logged_in: req.session.logged_in});
+});
+
 
 // redirecting users to homepage once they log in
 router.get('/login', (req, res) => {
