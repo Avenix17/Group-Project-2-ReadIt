@@ -1,7 +1,9 @@
 <div class="row">
 <!-- top search bar -->
 <div class="topnav">
-  <input type="text" placeholder="Search..">
+  <input type="text" id="search-bar" placeholder="Search..">
+  <button onclick="searchBook()"></button>
+
 </div>
 
 <!-- side nav bar -->
@@ -13,9 +15,8 @@
 </div>
 
 <!-- page content -->
-<div class="content">
-  .. {{book info from search result}}
+<div id="search-output">
+
 </div>
-
-
+<button onclick="addToList()">Add To List</button>
 </div>
