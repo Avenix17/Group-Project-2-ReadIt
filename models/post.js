@@ -33,8 +33,6 @@ Post.init(
                 key: 'id'
             },
         },
-        //user id
-        //reply id (points at post id)
     },
     {
         sequelize,
