@@ -1,48 +1,51 @@
-
 <section class="hero is-fullheight">
-      <div class="hero-body has-text-centered">
-        <div class="login" style="background-color:rgb(255, 248, 248)">
-          <h1 class="title">Reat It</h1>
+  <div class="hero-body has-text-centered">
+    <div class="login" style="background-color:rgb(255, 248, 248)">
+      <h1 class="title">ReadIt</h1>
 
 
 
-          <form class="form login-form"> <!-- Login section -->
+      <form class="form login-form">
+        <!-- Login section -->
+        <div class="field">
+          <div class="control">
+            <input class="input is-medium is-rounded" id="username-login" type="text" placeholder="username" />
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <input class="input is-medium is-rounded" id="password-login" type="password" placeholder="**********" />
+          </div>
+        </div>
+        <br />
+        <button class="button is-block is-fullwidth is-warning is-medium is-rounded" type="submit">
+          Login
+        </button>
+      </form>
+      <br><br>
+      <p>-----------------OR----------------</p>
+      <br><br>
+      <nav class="level">
+        <div class="level-item has-text-centered">
+
+
+          <form class="form signup-form">
+            <!-- Sign up section -->
             <div class="field">
               <div class="control">
-                <input class="input is-medium is-rounded" id= "username-login" type="text" placeholder="username"/>
+                <input class="input is-medium is-rounded" id="username-signup" type="text" placeholder="username" />
               </div>
             </div>
             <div class="field">
               <div class="control">
-                <input class="input is-medium is-rounded" id="password-login" type="password" placeholder="**********"/>
-              </div>
-            </div>
-            <br />
-            <button class="button is-block is-fullwidth is-warning is-medium is-rounded" type="submit">
-              Login
-            </button>
-          </form>
-          <br><br>
-          <p>-----------------OR----------------</p>
-          <br><br>
-          <nav class="level">
-            <div class="level-item has-text-centered">
-
-
-          <form class="form signup-form"> <!-- Sign up section -->
-            <div class="field">
-              <div class="control">
-                <input class="input is-medium is-rounded" id= "username-signup" type="text" placeholder="username"/>
+                <input class="input is-medium is-rounded" id="email-signup" type="email"
+                  placeholder="hello@example.com" />
               </div>
             </div>
             <div class="field">
               <div class="control">
-                <input class="input is-medium is-rounded" id= "email-signup" type="email" placeholder="hello@example.com"/>
-              </div>
-            </div>
-            <div class="field">
-              <div class="control">
-                <input class="input is-medium is-rounded" id="password-signup" type="password-length" placeholder="**********"/>
+                <input class="input is-medium is-rounded" id="password-signup" type="password"
+                  placeholder="**********" />
               </div>
             </div>
             <br />
@@ -50,11 +53,11 @@
               Sign up
             </button>
           </form>
-            </div>
-          </nav>
         </div>
+      </nav>
+    </div>
 
-      </div>
-    </section>
+  </div>
+</section>
 
-    <script src="./js/login.js"></script>
+<script src="./js/login.js"></script>

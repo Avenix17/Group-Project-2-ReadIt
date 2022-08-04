@@ -5,7 +5,6 @@ const withAuth = require("../utils/authentication");
 
 
 router.get('/', withAuth, async (req, res) => {
-  console.log(req.session);
   const following = await Follow.findAll({
     where: {
       username: req.session.username,
@@ -34,7 +33,12 @@ router.get('/', withAuth, async (req, res) => {
     const children = await p.getPosts();
     return {
       ...p.dataValues,
-      children: children.map(c => c.dataValues),
+      // Makes createdAt a more reasonable format
+      createdAt: (p.createdAt + '').substring(0, 24),
+      children: children.map(c => ({
+        ...c.dataValues,
+        createdAt: (c.createdAt + '').substring(0, 24),
+      })),
     };
   }));
 
@@ -46,6 +50,17 @@ router.get('/', withAuth, async (req, res) => {
   });
 
 });
+
+
+router.get('/search', withAuth, async (req, res) => {
+  const users = await User.findAll({
+    attributes: ['username']
+  });
+  console.log(users);
+
+  res.render('search-result', {users, logged_in: req.session.logged_in});
+});
+
 
 // redirecting users to homepage once they log in
 router.get('/login', (req, res) => {
