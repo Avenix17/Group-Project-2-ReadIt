@@ -1,0 +1,17 @@
+[
+    {
+        "listname": "Spooky",
+        "public": "true",
+        "username": "Sal"
+    },
+    {
+        "listname": "Scary",
+        "public": "false",
+        "username": "Lernantino"
+    },
+    {
+        "listname": "Skeletons",
+        "public": "false",
+        "username": "Sal"
+    }
+]

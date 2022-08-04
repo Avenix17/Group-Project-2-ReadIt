@@ -1,0 +1,48 @@
+<div class="row">
+<!-- top search bar -->
+<div class="topnav">
+  {{!-- <h1>Hello, {{User Name}}!</h1> --}}
+  Hello Username!
+  <input type="text" placeholder="Search..">
+</div>
+<!-- side nav bar -->
+<div class="left-sidebar">
+  <a class="active" href="/homepage">Home</a>
+  <a href="/profile">Profile</a>
+  <a href="#settings">Settings</a>
+</div>
+
+<!-- page content -->
+<div class="content">
+  {{!-- .. {{posted content of who you follow}} --}}
+ this is where the feed appears
+  <ul class="post-list">
+    <!-- posts array -->
+    {{#each posts}}
+      <li>
+          {{!-- {{> post-info post }} --}}
+          {{dataValues.username}}: {{dataValues.title}} - {{dataValues.entry}}
+      </li>
+    {{/each}}
+  </ul>
+</div>
+
+<div class="right-sidebar">
+    <div class="followers">
+        {{!-- {{people you follow}} --}}
+        this is where followers will appear
+
+      <ul class="following-list">
+        <!-- posts array -->
+        {{#each following}}
+          <li>
+          {{!-- {{> post-info post }} --}}
+          {{dataValues.followed_username}}
+        </li>
+      {{/each}}
+  </ul>
+    </div>
+</div>
+
+</div>
+<script src="./js/homepage.js"></script>

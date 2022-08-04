@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS readit_db;
+CREATE DATABASE readit_db;
+
