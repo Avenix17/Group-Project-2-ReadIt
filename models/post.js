@@ -32,7 +32,7 @@ Post.init(
                 model: 'post',
                 key: 'id'
             },
-        }
+        },
         //user id
         //reply id (points at post id)
     },
