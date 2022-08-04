@@ -39,7 +39,7 @@
     {{#each renderPosts as |post|}}
       <li>
       {{post.username}}: {{post.title}} - {{post.entry}} - {{post.createdAt}}
-      <form class="reply-form hidden">
+      <form class="reply-form">
         <input type="hidden" value="{{post.id}}" name="reply_to">
         <input name="title" class="input" type="text" placeholder="Title of reply" id="created-reply">
         <textarea name="entry" cols="30" rows="2" placeholder="Write your reply"></textarea>
