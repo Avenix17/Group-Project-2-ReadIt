@@ -1,50 +1,48 @@
 const router = require("express").Router();
 const { User, Follow, Post } = require("../models");
+const { Op } = require("sequelize");
 const withAuth = require("../utils/authentication");
 
 
-// rendering all posts to homepage
 router.get('/', withAuth, async (req, res) => {
   console.log(req.session);
-
-  const posts = await Post.findAll({
-    where: {
-      username: req.session.username,
-    },
-    // attributes: [
-    //   'id',
-    //   'entry',
-    //   'title',
-    //   'reply_to'
-    // ],
-    // include: [
-    //   {
-    //     model: User,
-    //     attributes: ['username']
-    //   }
-    // ]
-  });
-
-
   const following = await Follow.findAll({
     where: {
       username: req.session.username,
     },
-    // attributes: [
-    //   'follow_username',
-    // ],
-    // include: [
-    //   {
-    //     model: User,
-    //     attributes: ['username']
-    //   }
-    // ]
   });
 
-  // console.log("posts", posts);
-  // console.log("following", following);
+  const following_usernames = following.map(f => f.getDataValue("followed_username"));
+  following_usernames.push(req.session.username);
 
-  res.render('homepage', { posts, following, logged_in: req.session.logged_in });
+  // rendering all posts to homepage
+  const posts = await Post.findAll({
+    where: {
+      // username: req.session.username,
+      username: {
+        [Op.in]: following_usernames,
+      },
+      reply_to: null,
+    },
+  });
+
+
+
+  //Grabs children posts of initial posts
+  const renderPosts = await Promise.all(posts.map(async (p) => {
+    const children = await p.getPosts();
+    return {
+      ...p.dataValues,
+      children: children.map(c => c.dataValues),
+    };
+  }));
+
+  res.render('homepage', {
+    renderPosts,
+    following,
+    logged_in: req.session.logged_in,
+    username: req.session.username,
+  });
 
 });
 
