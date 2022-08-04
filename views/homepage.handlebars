@@ -1,29 +1,73 @@
 <div class="row">
 <!-- top search bar -->
 <div class="topnav">
-  <h1>Hello, {{User Name}}!</h1>
-  <input type="text" id="search-bar" placeholder="Search..">
+
+  <h1>Hello, {{username}}!</h1>
+  <input type="text" placeholder="Search.."/>
+
 </div>
 <!-- side nav bar -->
 <div class="left-sidebar">
-  <a class="active" href="#home">Home</a>
-  <a href="#profile">Profile</a>
-  <a href="#library">Library</a>
-  <a href="#settings">Settings</a>
+  <a class="active" href="/">Home</a>
+  <a href="/profile">Profile</a>
+  <a href="/settings">Settings</a>
 </div>
 
 <!-- page content -->
 <div class="content">
-  .. {{posted content of who you follow}}
+  {{!-- .. {{posted content of who you follow}} --}}
+  {{!-- <textarea class="createdPost" type="text" placeholder="Write your post!"></textarea> --}}
+  <form class="box entry-creation">
+    <div class="field">
+      <label class="label">Title</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Title of post" id="created-title">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Entry</label>
+      <div class="control">
+        <textarea type="text" placeholder="Write your entry" id="created-entry"></textarea>
+      </div>
+    </div>
+
+    <button class="button is-primary" type="submit">Submit Post</button>
+  </form>
+ this is where the feed appears
+
+  <ul>
+    {{#each renderPosts as |post|}}
+      <li>
+      {{post.username}}: {{post.title}} - {{post.entry}}
+      </li>
+      <ul>
+      {{#each post.children as |child|}}
+        <li>
+          {{child.username}}: {{child.title}} - {{child.entry}}
+        </li>
+      {{/each}}
+      </ul>
+    {{/each}}
+  </ul>
 </div>
 
 <div class="right-sidebar">
     <div class="followers">
-        {{people you follow}}
-    </div>
-    <div class="books-read">
-        {pictures of books read}
+        {{!-- {{people you follow}} --}}
+        this is where those who you follow will appear
+
+      <ul class="following-list">
+        <!-- posts array -->
+        {{#each following}}
+          <li>
+          {{!-- {{> post-info post }} --}}
+          {{dataValues.followed_username}}
+        </li>
+      {{/each}}
+  </ul>
     </div>
 </div>
 
 </div>
+<script src="./js/homepage.js"></script>
