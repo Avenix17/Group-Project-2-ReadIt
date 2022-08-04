@@ -51,6 +51,12 @@ const seedDatabase = async () => {
     reply_to: parentPost.id,
   });
 
+  const responsePost2 = await Post.create({
+    username: 'Amiko',
+    title: 'Something else',
+    entry: 'Meh!',
+    reply_to: parentPost.id,
+  });
 
   process.exit(0);
 };
