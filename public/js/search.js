@@ -16,7 +16,7 @@ function searchBook() {
         }
     });
 };
-
+// these two functions toggle the ability to see all users on site
 function showUsers() {
     userOutput.classList.remove('hidden');
 }
@@ -25,6 +25,7 @@ function hideUsers() {
     userOutput.classList.add('hidden');
 }
 
+// adds user that the current user to their list that they are following
 document
     .querySelector('#user-output')
     .addEventListener('click', async (e) => {
@@ -48,21 +49,3 @@ document
         }
     });
 
-
-
-// const allUsers = async (e) => {
-//     e.preventDefault();
-
-//     const response = await fetch ('/api/users', {
-//         method: 'GET',
-//         body: JSON.stringify({
-//             username: {[Op.in]: username},
-//         }),
-//         headers: { 'Content-Type': 'application/json' },
-//     });
-//     if (response.ok) {
-//         document.location.replace('/search');
-//     } else {
-//         alert('response.statusText');
-//     }
-// };
