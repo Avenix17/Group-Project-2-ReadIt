@@ -11,7 +11,7 @@ router.get('/', withAuth, async (req, res) => {
       username: req.session.username,
     },
   });
-
+  // Grabs the users that the current user follows
   const following_usernames = following.map(f => f.getDataValue("followed_username"));
   following_usernames.push(req.session.username);
 
@@ -25,8 +25,9 @@ router.get('/', withAuth, async (req, res) => {
       reply_to: null,
     },
   });
-
-
+  //Puts newest posts at the top
+  posts.sort();
+  posts.reverse();
 
   //Grabs children posts of initial posts
   const renderPosts = await Promise.all(posts.map(async (p) => {

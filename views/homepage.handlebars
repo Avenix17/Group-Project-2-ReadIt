@@ -14,7 +14,24 @@
 <!-- page content -->
 <div class="content">
   {{!-- .. {{posted content of who you follow}} --}}
-  <input type="text" placeholder="Write your post!"/>
+  {{!-- <textarea class="createdPost" type="text" placeholder="Write your post!"></textarea> --}}
+  <form class="box entry-creation">
+    <div class="field">
+      <label class="label">Title</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Title of post" id="created-title">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Entry</label>
+      <div class="control">
+        <textarea type="text" placeholder="Write your entry" id="created-entry"></textarea>
+      </div>
+    </div>
+
+    <button class="button is-primary" type="submit">Submit Post</button>
+  </form>
  this is where the feed appears
 
   <ul>
@@ -36,7 +53,7 @@
 <div class="right-sidebar">
     <div class="followers">
         {{!-- {{people you follow}} --}}
-        this is where followers will appear
+        this is where those who you follow will appear
 
       <ul class="following-list">
         <!-- posts array -->
