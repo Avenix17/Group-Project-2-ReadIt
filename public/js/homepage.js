@@ -1,7 +1,28 @@
 
-// showing user/following posts and replies in feed
+const createdPost = async(event) => {
+    event.preventDefault();
 
+    const title = document.querySelector('#created-title').value.trim();
+    const entry = document.querySelector('#created-entry').value.trim();
 
+    if (title && entry) {
+        const response = await fetch ('/api/post', {
+            method: 'POST',
+            body: JSON.stringify({title, entry}),
+            headers: { 'Content-Type': 'application/json'},
+        });
+
+        if (response.ok) {
+            document.location.replace('/');
+        } else {
+            alert('response.statusText');
+        }
+    }
+};
+
+document
+  .querySelector('.entry-creation')
+  .addEventListener('submit', createdPost);
 
 
 // create post
