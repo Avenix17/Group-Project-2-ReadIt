@@ -8,7 +8,7 @@ hideUsersBtn.addEventListener('click', hideUsers);
 // when someone enters a book name and presses the search button the info of the list items pop up
 function searchBook() {
     document.getElementById('search-output').innerHTML = "";
-    fetch("http://openlibrary.org/search.json?q=" + document.getElementById("search-bar").value)
+    fetch("https://openlibrary.org/search.json?q=" + document.getElementById("search-bar").value)
     .then (a => a.json())
     .then (response => {
         for (var i=0; i<10; i++) {
