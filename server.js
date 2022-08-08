@@ -35,23 +35,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 module.exports = router;
 
-// app.all("*", withAuth, (req, res, next) =>{
-//   req.session.logged_in = true;
-//   next();
-// })
-// app.all("*", (req, res, next) => {
-//   req.session.logged_in = false;
-//   // req.session.currentUser = 'Sal';
-//   req.session.currentUser = 'Amiko';
-//   next();
-// });
-
-// app.get("/", (req, res, next) => {
-//   console.log("Setting logged in to true");
-//   req.session.logged_in = true;
-//   next();
-// });
-
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
