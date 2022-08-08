@@ -24,7 +24,7 @@
     background: var(--shadowDark) !important;
   }
   
-  a {
+  /* a {
     background: #ffdd57;
     font-weight: 300;
     font-size: 20px;
@@ -37,7 +37,7 @@
     padding-right: 5px;
     margin-top: 8px;
     margin-left: 10px;
-  }
+  } */
 
   .hero{
     background: rgb(255, 255, 255) url(Books.jpeg) center / cover;

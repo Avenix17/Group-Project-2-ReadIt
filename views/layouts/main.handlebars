@@ -21,11 +21,19 @@
         <header>
     
           <nav>
-        <!-- Conditionally render login or logout links -->
+        <!-- Conditionally render logout link -->
         {{#if logged_in}}
-        <button class="no-button" id="logout">logout</button>
-        {{else}}
-        <a href="/login">login</a>
+        <div class="navbar-start" style="background-color: rgb(255, 247, 209)">
+          <h1 class="title" style="padding-top: 25px"><i class="bi bi-book"></i> ReadIt</h1>
+        
+          <div class="navbar-end">
+            <span class="navbar-item">
+              <a class="button is-black is-outlined" id="logout">
+                <span>Logout</span>
+              </a>
+            </span>
+          </div>
+        </div>
         {{/if}}
       </nav>
 
