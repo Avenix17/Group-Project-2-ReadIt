@@ -1,78 +1,132 @@
-<div class="row">
-<!-- top search bar -->
-<div class="topnav">
+<!-- * = Things that will be important to include so it can be changed to handlebars -->
 
-  <h1>Hello, {{username}}!</h1>
+<!-- Top Navbar -->
 
-</div>
-<!-- side nav bar -->
-<div class="left-sidebar">
-  <a class="active" href="/">Home</a>
-  <a href="/search">Search</a>
-  <a href="/profile">Profile</a>
-  <a href="/settings">Settings</a>
-</div>
+<body>
+    <nav class="navbar has-shadow" style="background-color: rgb(255, 247, 209)">
+        <div class="container" id="navbar">
+            <div class="navbar-start">
+                <h1 class="title" style="padding-top: 25px"><i class="bi bi-book"></i>    Reat It</h1>
 
-<!-- page content -->
-<div class="content">
-  {{!-- .. {{posted content of who you follow}} --}}
-  <form class="box entry-creation">
-    <div class="field">
-      <label class="label">Title</label>
-      <div class="control">
-        <input class="input" type="text" placeholder="Title of post" id="created-title">
-      </div>
-    </div>
+                <div class="navbar-burger burger" data-target="navMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <span class="navbar-item">
+                    <a class="button is-black is-outlined" href="#">
+                        <span>Logout</span>
+                    </a>
+                </span>
+                    </div>
+                </div>
+	        </div>
+        </div>
+    </nav> <br>
 
-    <div class="field">
-      <label class="label">Entry</label>
-      <div class="control">
-        <textarea type="text" placeholder="Write your entry" id="created-entry"></textarea>
-      </div>
-    </div>
 
-    <button class="button is-primary" type="submit">Submit Post</button>
-  </form>
- this is where the feed appears
+    <!-- Let Side Navbar -->
 
-  <ul id="posts">
-    {{#each renderPosts as |post|}}
-      <li>
-      {{post.username}}: {{post.title}} - {{post.entry}} - {{post.createdAt}}
-      <form class="reply-form">
-        <input type="hidden" value="{{post.id}}" name="reply_to">
-        <input name="title" class="input" type="text" placeholder="Title of reply" id="created-reply">
-        <textarea name="entry" cols="30" rows="2" placeholder="Write your reply"></textarea>
-        <button type="submit">Reply</button>
-      </form>
-      </li>
-      <ul>
-      {{#each post.children as |child|}}
-        <li>
-          {{child.username}}: {{child.title}} - {{child.entry}} - {{child.createdAt}}
-        </li>
-      {{/each}}
-      </ul>
-    {{/each}}
-  </ul>
-</div>
+    <div class="columns" id="mail-app">
+        <aside class="column is-2 aside hero is-fullheight">
+            <div>
+                <div class="main">
+                    <a href="#" class="item active"><span class="icon"><i class="bi bi-house"></i></span><span class="name">Home</span></a>
+                    <a href="/search" class="item"><span class="icon"><i class="bi bi-search"></i></span><span class="name">Search</span></a>         <!-- * -->
+                    <a href="/profile" class="item"><span class="icon"><i class="bi bi-person"></i></i></span><span class="name">Profile</span></a>   <!-- * -->
+                    <a href="/settings" class="item"><span class="icon"><i class="bi bi-gear"></i></span><span class="name">Settings</span></a>       <!-- * -->
+                </div>
+            </div>
 
-<div class="right-sidebar">
-    <div class="followers">
-        {{!-- {{people you follow}} --}}
-        this is where those who you follow will appear
+            <p class="menu-label"> <!-- Left Side Navbar Followers list -->
+							You Are Following: 
+						</p>
+						<ul class=" following-list"> <!-- * -->
+              {{#each following}} <!-- * -->
+							  <li><span class="tag is-primary is-medium ">{{dataValues.followed_username}}</span></li> <!-- * -->
+              {{/each}} <!-- * -->
+						</ul>
+        </aside><br>
 
-      <ul class="following-list">
-        <!-- posts array -->
-        {{#each following}}
-          <li>
-          {{!-- {{> post-info post }} --}}
-          {{dataValues.followed_username}}
-        </li>
-      {{/each}}
-  </ul>
-    </div>
-</div>
+    <!-- Main Middle Section-->
 
-</div>
-<script src="./js/homepage.js"></script>
+    <!-- Create Post-->
+
+        <div class="column is-9" > 
+            <div class="content is-medium">
+              <div class="box">
+                <h4 class="title is-3">Hello {{username}}!</h4>  <!-- * -->
+                <form class="box entry-creation"> <!-- * -->
+                <article class="message is-warning">
+                  <div class="message-body is-warning">
+                    <input type="text" placeholder="Title" class="input is-medium is-rounded" id="created-title" >   <!-- * -->
+                  </div>
+                </article>
+                <article class="message is-warning">
+                    <div class="message-body is-warning">
+                      <input type="text" placeholder="What's on your mind..." class="input is-medium is-rounded" id="created-entry"> <!-- * -->
+                    </div>
+                  </article>
+                  <button class="button is-block is-warning is-medium is-rounded" type="submit">
+                    Submit
+                  </button>
+                </form>
+              </div>
+
+    <!-- This is where the feed appears -->
+
+              <div class="content is-medium" id="posts"> <!-- * -->
+                {{#each renderPosts as |post|}}  <!-- * -->
+                  <div class="box message is-warning">
+                    <article>
+                      <div class="media-content">
+                        <div class="content">
+                          <h4 class="message is-warning"><strong>{{post.title}}</strong></h4>   <!-- * -->
+                            <div class="notification is-warning is-light">{{post.entry}}</div>  <!-- * -->
+                              <strong><small>{{post.username}}</small></strong>                  <!-- * -->
+                              <small>{{post.createdAt}}</small><br>                              <!-- * -->
+                              <p>---------------------------------------------------------------------</p>
+
+                          <!-- This is were the reply will be displayed -->
+
+                              <form class="reply-form is-hidden"> <!-- * -->
+                                {{#each post.children as |child|}} <!-- * -->
+                                  <article class="notification is-warning is-light">
+                                    <p>                               
+                                      <strong>{{child.username}} : </strong><strong> [ {{child.title}} ] </strong> {{child.entry}}   <!-- * -->
+                                      <small>{{child.createdAt}}</small> <!-- * -->
+                                    </p>
+                                  </article>
+                                {{/each}}
+                              </form>
+
+                          </div>
+                        {{/each}}
+                      </div>
+                    </article><br>
+
+
+
+            <!-- Reply Input -->
+
+                    <div class="columns is-mobile"> 
+                      <div class="column is-11">
+                          <div class="field">
+                              <div class="control">
+                                <input type="hidden" value="{{post.id}}" name="reply_to">  <!-- * -->
+                                <input class="input is-medium is-rounded" type="text" name = "title" placeholder="Title of reply" id="created-reply">                   <!-- * -->
+                                <input class="input is-medium is-rounded" type="text" name="entry" cols="30" rows="2" placeholder="Add a comment" id="created-reply">   <!-- * -->
+                              </div>
+                          </div>
+                      </div>
+                      <div class="column has-text-centered">
+                          <button class="button is-rounded">Reply</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <script src="./js/homepage.js"></script>
