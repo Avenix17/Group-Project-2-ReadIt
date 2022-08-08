@@ -1,8 +1,7 @@
-<!-- * = Things that will be important to include so it can be changed to handlebars -->
+<!-- * = This helps track which areas are apart of handlebars -->
 
 <!-- Top Navbar -->
 
-<body>
     <nav class="navbar has-shadow" style="background-color: rgb(255, 247, 209)">
         <div class="container" id="navbar">
             <div class="navbar-start">
@@ -18,13 +17,13 @@
                 <span class="navbar-item">
                     <a class="button is-black is-outlined" href="#">
                         <span>Logout</span>
-                    </a>
-                </span>
-                    </div>
+                      </a>
+                  </span>
                 </div>
-	        </div>
-        </div>
-    </nav> <br>
+              </div>
+	          </div>
+          </div>
+        </nav><br>
 
 
     <!-- Let Side Navbar -->
@@ -40,13 +39,17 @@
                 </div>
             </div>
 
-            <p class="menu-label"> <!-- Left Side Navbar Followers list -->
+            <!-- Left Side Navbar Followers list -->
+
+            <p class="menu-label" style="text-align: center"> 
 							You Are Following: 
 						</p>
-						<ul class=" following-list"> <!-- * -->
-              {{#each following}} <!-- * -->
-							  <li><span class="tag is-primary is-medium ">{{dataValues.followed_username}}</span></li> <!-- * -->
-              {{/each}} <!-- * -->
+						<ul class=" following-list">              <!-- * -->
+              {{#each following}}                     <!-- * -->
+							  <li><span class="tag is-primary is-medium" style="text-align: center">
+                  {{dataValues.followed_username}}    <!-- * -->
+                </span></li>               
+              {{/each}}                               <!-- * -->
 						</ul>
         </aside><br>
 
@@ -85,11 +88,11 @@
                         <div class="content">
                           <h4 class="message is-warning"><strong>{{post.title}}</strong></h4>   <!-- * -->
                             <div class="notification is-warning is-light">{{post.entry}}</div>  <!-- * -->
-                              <strong><small>{{post.username}}</small></strong>                  <!-- * -->
-                              <small>{{post.createdAt}}</small><br>                              <!-- * -->
+                              <strong><small>{{post.username}}</small></strong>                 <!-- * -->
+                              <small>{{post.createdAt}}</small><br>                             <!-- * -->
                               <p>---------------------------------------------------------------------</p>
 
-                          <!-- This is were the reply will be displayed -->
+                          <!-- This is where the reply will be displayed -->
 
                               <form class="reply-form is-hidden"> <!-- * -->
                                 {{#each post.children as |child|}} <!-- * -->
