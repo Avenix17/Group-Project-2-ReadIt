@@ -13,11 +13,10 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const newPostData = await Post.create({
-      id: req.body.id,
       title: req.body.title,
       entry: req.body.entry,
-      username: req.body.username,
-      reply_to: req.body.reply_to,
+      username: req.session.username,
+      reply_to: req.body.reply_to ? req.body.reply_to : null,
     });
     res.status(200).json(newPostData);
   } catch (err) {

@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const newFollowData = await Follow.create({
-      username: req.body.username,
+      username: req.session.username,
       followed_username: req.body.followed_username,
     });
     res.status(200).json(newFollowData);

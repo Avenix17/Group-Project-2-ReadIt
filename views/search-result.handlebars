@@ -1,21 +1,35 @@
 <div class="row">
-<!-- top search bar -->
-<div class="topnav">
-  <input type="text" placeholder="Search..">
+  <!-- top search bar -->
+  <div class="topnav">
+    <input type="text" id="search-bar" placeholder="Search.."/>
+    <button onclick="searchBook()">Search</button>
+    <button id="search-users">Show all Users</button>
+    <button id="hide-users">Hide all Users</button>
+
+  </div>
+
+  <!-- side nav bar -->
+  <div class="left-sidebar">
+    <a class="active" href="/">Home</a>
+    <a href="#profile">Profile</a>
+    <a href="#settings">Settings</a>
+  </div>
+
+  <!-- page content -->
+  <div class="page-content">
+    <div id="search-output"></div>
+
+    <div class="hidden" id="user-output">
+      {{#each users as |user|}}
+      <li>
+        {{dataValues.username}}
+        <button class="follow-btn" _username="{{dataValues.username}}">Follow</button>
+      </li>
+      {{/each}}
+    </div>
+  </div>
+
+  <button onclick="addToList()">Add To List</button>
 </div>
 
-<!-- side nav bar -->
-<div class="left-sidebar">
-  <a class="active" href="#home">Home</a>
-  <a href="#profile">Profile</a>
-  <a href="#library">Library</a>
-  <a href="#settings">Settings</a>
-</div>
-
-<!-- page content -->
-<div class="content">
-  .. {{book info from search result}}
-</div>
-
-
-</div>
+<script src="./js/search.js"></script>

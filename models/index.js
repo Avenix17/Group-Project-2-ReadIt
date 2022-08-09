@@ -35,7 +35,14 @@ User.hasMany(Post, {
   onDelete: "CASCADE",
 });
 
+Post.belongsTo(User);
+
 Post.hasMany(Post, {
+  foreignKey: "reply_to",
+  onDelete: "CASCADE",
+});
+
+Post.belongsTo(Post, {
   foreignKey: "reply_to",
   onDelete: "CASCADE",
 });
