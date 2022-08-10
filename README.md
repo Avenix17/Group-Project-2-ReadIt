@@ -30,12 +30,14 @@ so that I can be more involved and organized with my reading.
 Technologies used for website:
 
 * Javascript
+* jQuery
 * handlebars.js
 * MySQL
 * Sequelize
 * Express.js
 * bcrypt
-* anime.js
+* animejs
+* Bulma Framework
 
 
 ## Local Installation
@@ -60,14 +62,23 @@ The application is deployed through Heroku and can be accessed using the followi
 When an unique account is created, you must then login using the normal login form.
 ![Login Page](Images/signinpage-readit.JPG)
 
-### Homepage with social feed
-![Homepage]()
+### Top of Homepage
+![Homepage](Images/homepage-post.JPG)
 
-### Search page for books and following users
-![Search Page]()
+### Posts with replies on Homepage
+![Homepage with replies](Images/post-replies.JPG)
+
+### Search page landing
+![Search Page landing](Images/searchpage-basic.JPG)
+
+### Search page with shown users and book results
+![Search Page with results](Images/searchpage-action.JPG)
 
 ## Future Development
 
+* Spice up CSS
+* Ability to delete/edit posts and replies
+* Avatar/Picture option (Profile)
 * Build Profile and Settings pages
 * Messages to User (password incorrect, not long enough, etc.)
 * Be able to save books from search to lists
