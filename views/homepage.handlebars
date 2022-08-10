@@ -4,7 +4,7 @@
   <aside class="column is-2 aside hero is-fullheight">
     <div>
       <div class="main">
-        <a href="#" class="item active"><span class="icon"><i class="bi bi-house"></i></span><span
+        <a href="/" class="item active"><span class="icon"><i class="bi bi-house"></i></span><span
             class="name">Home</span></a>
         <a href="/search" class="item"><span class="icon"><i class="bi bi-search"></i></span><span
             class="name">Search</span></a> <!-- * -->
@@ -23,7 +23,8 @@
       <!-- * -->
       {{#each following}}
       <!-- * -->
-      <li><span class="tag is-primary is-medium" style="text-align: center">{{dataValues.followed_username}}</span></li> <!-- * -->
+      <li><span class="tag is-primary is-medium" style="text-align: center">{{dataValues.followed_username}}</span></li>
+      <!-- * -->
       {{/each}}
       <!-- * -->
     </ul>
@@ -50,9 +51,13 @@
                 id="created-entry"> <!-- * -->
             </div>
           </article>
-          <button class="button is-block is-warning is-medium is-rounded" type="submit">
-            Submit
+          <button class="button btn-post is-block is-warning is-medium is-rounded" type="submit">
+            <div class="text">Submit</div>
           </button>
+          <div class="progress-bar"></div>
+          <svg x="0px" y="0px" viewBox="0 0 25 30" style="enable-background:new 0 0 25 30;">
+            <path class="check" class="st0" d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2" />
+          </svg>
         </form>
       </div>
 
@@ -108,4 +113,6 @@
     </div>
   </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="./js/homepage.js"></script>
