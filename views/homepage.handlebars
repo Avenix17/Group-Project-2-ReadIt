@@ -1,135 +1,133 @@
-<!-- * = This helps track which areas are apart of handlebars -->
+<!-- Left Side Navbar -->
 
-<!-- Top Navbar -->
+<div class="columns" id="mail-app">
+  <aside class="column is-2 aside is-fullheight">
+    <div>
+      <div class="main">
+        <a href="#" class="item active"><span class="icon"><i class="bi bi-house"></i></span><span
+            class="name">Home</span></a>
+        <a href="/search" class="item"><span class="icon"><i class="bi bi-search"></i></span><span
+            class="name">Search</span></a>
+        <a href="/profile" class="item"><span class="icon"><i class="bi bi-person"></i></i></span><span
+            class="name">Profile</span></a>
+        <a href="/settings" class="item"><span class="icon"><i class="bi bi-gear"></i></span><span
+            class="name">Settings</span></a>
+      </div>
 
-    <nav class="navbar has-shadow" style="background-color: rgb(255, 247, 209)">
-        <div class="container" id="navbar">
-            <div class="navbar-start">
-                <h1 class="title" style="padding-top: 25px"><i class="bi bi-book"></i>    Reat It</h1>
+      <!-- Left Side Navbar Followers list -->
 
-                <div class="navbar-burger burger" data-target="navMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+      <p class="menu-label" style="text-align: center">You Are Following:</p>
+      <ul class="following-list">
+        {{#each following}}
+        <li><span class="tag is-medium " style="padding-left: 25% ">{{dataValues.followed_username}}</span></li>
+        {{/each}}
+      </ul>
+    </div>
+  </aside><br>
+
+  <!-- Main Middle Section-->
+
+  <!-- Create Post-->
+
+  <div class="columnis-9">
+    <div class="content is-medium">
+      <div class=" hero box">
+        <h4 class="title is-3" style="text-align: center; background: rgba(255, 255, 255, 0.7) ">Hello {{username}}!
+        </h4>
+        <form class="box entry-creation">
+          <article class="message is-warning">
+            <div class="message-body is-warning">
+              <input type="text" placeholder="Title" class="input is-medium is-rounded" id="created-title">
             </div>
-            <div class="navbar-end">
-                <span class="navbar-item">
-                    <a class="button is-black is-outlined" href="#">
-                        <span>Logout</span>
-                      </a>
-                  </span>
-                </div>
-              </div>
-	          </div>
-          </div>
-        </nav><br>
-
-
-    <!-- Let Side Navbar -->
-
-    <div class="columns" id="mail-app">
-        <aside class="column is-2 aside hero is-fullheight">
-            <div>
-                <div class="main">
-                    <a href="#" class="item active"><span class="icon"><i class="bi bi-house"></i></span><span class="name">Home</span></a>
-                    <a href="/search" class="item"><span class="icon"><i class="bi bi-search"></i></span><span class="name">Search</span></a>         <!-- * -->
-                    <a href="/profile" class="item"><span class="icon"><i class="bi bi-person"></i></i></span><span class="name">Profile</span></a>   <!-- * -->
-                    <a href="/settings" class="item"><span class="icon"><i class="bi bi-gear"></i></span><span class="name">Settings</span></a>       <!-- * -->
-                </div>
+          </article>
+          <article class="message is-warning">
+            <div class="message-body is-warning">
+              <input type="text" placeholder="What's on your mind..." class="input is-medium is-rounded"
+                id="created-entry">
             </div>
+          </article>
+          <button class="button is-block is-warning is-medium is-rounded" type="submit">
+            Submit
+          </button>
+        </form>
+      </div>
 
-            <!-- Left Side Navbar Followers list -->
+      <!-- Post -->
+      <div class="content is-medium" id="posts">
+        {{#each renderPosts as |post|}}
+        <article class="media">
+          <figure class="media-left">
+            <p class="image is-64x64">
+              <img src="css/subavatar.png">
+            </p>
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong>{{post.title}}</strong>
+                <br>
+                {{post.entry}}
+                <br>
+                <small>{{post.username}}</small> - <small>{{post.createdAt}}</small>
+              </p>
 
-            <p class="menu-label" style="text-align: center"> 
-							You Are Following: 
-						</p>
-						<ul class=" following-list">              <!-- * -->
-              {{#each following}}                     <!-- * -->
-							  <li><span class="tag is-primary is-medium" style="text-align: center">
-                  {{dataValues.followed_username}}    <!-- * -->
-                </span></li>               
-              {{/each}}                               <!-- * -->
-						</ul>
-        </aside><br>
+              <!-- Write & Submit comments -->
 
-    <!-- Main Middle Section-->
-
-    <!-- Create Post-->
-
-        <div class="column is-9" > 
-            <div class="content is-medium">
-              <div class="box">
-                <h4 class="title is-3">Hello {{username}}!</h4>  <!-- * -->
-                <form class="box entry-creation"> <!-- * -->
-                <article class="message is-warning">
-                  <div class="message-body is-warning">
-                    <input type="text" placeholder="Title" class="input is-medium is-rounded" id="created-title" >   <!-- * -->
+              <form class="reply-form">
+                <article class="media">
+                  <figure class="media-left"></figure>
+                  <div class="media-content">
+                    <div class="field">
+                      <p class="control">
+                        <input type="hidden" value="{{post.id}}" name="reply_to">
+                        <input class="input is-small is-rounded" type="text" name="title" placeholder="Title of reply"
+                          id="created-reply">
+                        <input class="input is-small is-rounded" type="text" name="entry" cols="30" rows="2"
+                          placeholder="Add a comment">
+                      </p>
+                    </div>
+                    <div class="field">
+                      <button type="submit" class="button is-small is-rounded">Reply</button>
+                    </div>
                   </div>
                 </article>
-                <article class="message is-warning">
-                    <div class="message-body is-warning">
-                      <input type="text" placeholder="What's on your mind..." class="input is-medium is-rounded" id="created-entry"> <!-- * -->
-                    </div>
-                  </article>
-                  <button class="button is-block is-warning is-medium is-rounded" type="submit">
-                    Submit
-                  </button>
-                </form>
-              </div>
+              </form>
 
-    <!-- This is where the feed appears -->
-
-              <div class="content is-medium" id="posts"> <!-- * -->
-                {{#each renderPosts as |post|}}  <!-- * -->
-                  <div class="box message is-warning">
-                    <article>
-                      <div class="media-content">
-                        <div class="content">
-                          <h4 class="message is-warning"><strong>{{post.title}}</strong></h4>   <!-- * -->
-                            <div class="notification is-warning is-light">{{post.entry}}</div>  <!-- * -->
-                              <strong><small>{{post.username}}</small></strong>                 <!-- * -->
-                              <small>{{post.createdAt}}</small><br>                             <!-- * -->
-                              <p>---------------------------------------------------------------------</p>
-
-                          <!-- This is where the reply will be displayed -->
-
-                              <form class="reply-form is-hidden"> <!-- * -->
-                                {{#each post.children as |child|}} <!-- * -->
-                                  <article class="notification is-warning is-light">
-                                    <p>                               
-                                      <strong>{{child.username}} : </strong><strong> [ {{child.title}} ] </strong> {{child.entry}}   <!-- * -->
-                                      <small>{{child.createdAt}}</small> <!-- * -->
-                                    </p>
-                                  </article>
-                                {{/each}}
-                              </form>
-
-                          </div>
-                        {{/each}}
-                      </div>
-                    </article><br>
+            </div>
 
 
 
-            <!-- Reply Input -->
+            <!-- comments section -->
 
-                    <div class="columns is-mobile"> 
-                      <div class="column is-11">
-                          <div class="field">
-                              <div class="control">
-                                <input type="hidden" value="{{post.id}}" name="reply_to">  <!-- * -->
-                                <input class="input is-medium is-rounded" type="text" name = "title" placeholder="Title of reply" id="created-reply">                   <!-- * -->
-                                <input class="input is-medium is-rounded" type="text" name="entry" cols="30" rows="2" placeholder="Add a comment" id="created-reply">   <!-- * -->
-                              </div>
-                          </div>
-                      </div>
-                      <div class="column has-text-centered">
-                          <button class="button is-rounded">Reply</button>
-                      </div>
-                    </div>
-                  </div>
+            {{#each post.children as |child|}}
+            <article class="media">
+              <figure class="media-left">
+                <p class="image is-48x48">
+                  <img src="css/subavatar.png">
+                </p>
+              </figure>
+              <div class="media-content">
+                <div class="content" style="color: rgb(255, 152, 104)">
+                  <p>
+                    <strong>{{child.title}}</strong>
+                    <br>
+                    {{child.entry}}
+                    <br>
+                    <small>{{child.username}}</small> - <small>{{child.createdAt}}</small>
+                  </p>
                 </div>
               </div>
-            </div>
-          <script src="./js/homepage.js"></script>
+            </article>
+            {{/each}}
+          </div>
+        </article>
+        {{/each}}
+      </div>
+
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<script src="./js/homepage.js"></script>
