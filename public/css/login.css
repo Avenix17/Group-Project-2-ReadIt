@@ -1,30 +1,30 @@
 * {
-    font-family: 'Nunito Sans', sans-serif;
-  }
-  
-  :root {
-    --shadowDark: #D9DDE6;
-    --shadowLight: #EFF5FE;
-  }
-  
-  body {
-    background: var(--background);
-  }
-  
-  .hero-body {
-    justify-content: center;
-  }
-  
-  .login {
-    border-radius: 25px;
-    padding: 1.5rem;
-  }
-  
-  input {
-    background: var(--shadowDark) !important;
-  }
-  
-  /* a {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+:root {
+  --shadowDark: #D9DDE6;
+  --shadowLight: #EFF5FE;
+}
+
+body {
+  background: var(--background);
+}
+
+.hero-body {
+  justify-content: center;
+}
+
+.login {
+  border-radius: 25px;
+  padding: 1.5rem;
+}
+
+input {
+  background: var(--shadowDark) !important;
+}
+
+/* a {
     background: #ffdd57;
     font-weight: 300;
     font-size: 20px;
@@ -37,13 +37,21 @@
     padding-right: 5px;
     margin-top: 8px;
     margin-left: 10px;
-  } */
+} */
 
-  .hero{
-    background: rgb(255, 255, 255) url(Books.jpeg) center / cover;
-   }
-  
-   /* The Images are optimized for different devices */
-@media (max-width: 1024px) { .hero-body { background: url(Books.jpeg) center / cover; } }
-@media (max-width: 768px) {  .hero-body { background: url(Books.jpeg) center / cover; } }
+.hero {
+  background: rgb(255, 255, 255) url(Books.jpeg) center / cover;
+}
 
+/* The Images are optimized for different devices */
+@media (max-width: 1024px) {
+  .hero-body {
+    background: url(Books.jpeg) center / cover;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-body {
+    background: url(Books.jpeg) center / cover;
+  }
+}
