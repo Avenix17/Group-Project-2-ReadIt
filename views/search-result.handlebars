@@ -1,35 +1,55 @@
-<div class="row">
-  <!-- top search bar -->
-  <div class="topnav">
-    <input type="text" id="search-bar" placeholder="Search.."/>
-    <button onclick="searchBook()">Search</button>
-    <button id="search-users">Show all Users</button>
-    <button id="hide-users">Hide all Users</button>
-
-  </div>
-
+<div class="columns" id="mail-app">
   <!-- side nav bar -->
-  <div class="left-sidebar">
-    <a class="active" href="/">Home</a>
-    <a href="#profile">Profile</a>
-    <a href="#settings">Settings</a>
-  </div>
+  {{!-- <div class="columns" id="mail-app"> --}}
+    <aside class="column is-2 aside is-fullheight">
+      <div>
+        <div class="main">
+          <a href="/" class="item active"><span class="icon"><i class="bi bi-house"></i></span><span
+              class="name">Home</span></a>
+          <a href="/search" class="item"><span class="icon"><i class="bi bi-search"></i></span><span
+              class="name">Search</span></a> <!-- * -->
+          <a href="/profile" class="item"><span class="icon"><i class="bi bi-person"></i></i></span><span
+              class="name">Profile</span></a> <!-- * -->
+          <a href="/settings" class="item"><span class="icon"><i class="bi bi-gear"></i></span><span
+              class="name">Settings</span></a> <!-- * -->
+        </div>
+      </div>
+    </aside>
+  {{!-- </div> --}}
 
   <!-- page content -->
-  <div class="page-content">
-    <div id="search-output"></div>
+  <div class="columns page-content">
 
-    <div class="hidden" id="user-output">
-      {{#each users as |user|}}
-      <li>
-        {{dataValues.username}}
-        <button class="follow-btn" _username="{{dataValues.username}}">Follow</button>
-      </li>
-      {{/each}}
+    <div class="column is-9 search-results">
+      <div class="content is-medium">
+        <div class="box">
+          <input type="text" id="search-bar" placeholder="Search.." />
+          <button onclick="searchBook()">Search</button>
+          <div id="search-output"></div>
+          {{!-- Add to List button will be added when Profile page is created --}}
+          {{!-- <button onclick="addToList()">Add To List</button> --}}
+        </div>
+      </div>
+    </div>
+
+    <div class="column  is-9 user-related">
+      <div class="content is-medium">
+        <div class="box">
+          <button id="search-users">Show all Users</button>
+          <button id="hide-users">Hide all Users</button>
+          <div class="hidden" id="user-output">
+            {{#each users as |user|}}
+            <li>
+              {{dataValues.username}}
+              <button class="follow-btn" _username="{{dataValues.username}}">Follow</button>
+            </li>
+            {{/each}}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <button onclick="addToList()">Add To List</button>
 </div>
 
 <script src="./js/search.js"></script>
