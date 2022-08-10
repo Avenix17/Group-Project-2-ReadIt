@@ -1,16 +1,10 @@
-body {
+.body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     font-size: 14px;
     line-height: 1.5;
     height: 100%;
     background-color: #fff;
-    background: rgb(255, 255, 255) url(Books.jpeg) center / cover;
   }
-
-  
-   /* The Images are optimized for different devices */
-@media (max-width: 1024px) { .body { background: url(Books.jpeg) center / cover; } }
-@media (max-width: 768px) {  .body { background: url(Books.jpeg) center / cover; } }
 
    small {
     color: black;
@@ -72,5 +66,15 @@ body {
     color: #5D5D5D;
     font-weight: 500;
   }
+
+ 
+
+  .body{
+    background: rgb(255, 255, 255) url(Books.jpeg) center / cover;
+   }
+  
+   /* The Images are optimized for different devices */
+@media (max-width: 1024px) { .hero-body { background: url(Books.jpeg) center / cover; } }
+@media (max-width: 768px) {  .hero-body { background: url(Books.jpeg) center / cover; } }
 
   
