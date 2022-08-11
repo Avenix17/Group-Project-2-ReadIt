@@ -100,3 +100,5 @@ When an unique account is created, you must then login using the normal login fo
 
 Avyrie Fellows, Ciara Gauntt, Isaac Harris, Colton Higley, Kami Pacanos, Robin Tarasevich
 
+** animejs submit button used for post submission was created by Andrew Millen - https://codepen.io/andrewmillen 
+
